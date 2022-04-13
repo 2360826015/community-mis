@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuwohe.communitymis.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.liuwohe.communitymis.entity.User">
+            <id property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="userRoleId" column="user_role_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,username,password,
+        user_role_id
+    </sql>
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from resident_user
+        where
+        username = #{username,jdbcType=VARCHAR}
+    </select>
+</mapper>
