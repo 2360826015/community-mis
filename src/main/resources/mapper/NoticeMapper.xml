@@ -9,10 +9,11 @@
             <result property="theme" column="theme" jdbcType="VARCHAR"/>
             <result property="sendDate" column="send_date" jdbcType="TIMESTAMP"/>
             <result property="text" column="text" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         notice_id,theme,send_date,
-        text
+        text,status
     </sql>
 </mapper>

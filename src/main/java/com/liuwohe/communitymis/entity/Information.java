@@ -18,7 +18,7 @@ public class Information implements Serializable {
     /**
      * 住户编号(由单元编号+门牌号组成)
      */
-    @TableId
+    @TableId(type = IdType.UUID)
     private String houseId;
 
     /**
@@ -52,9 +52,9 @@ public class Information implements Serializable {
     private String idcard;
 
     /**
-     * 常住人口数
+     * 常住类型
      */
-    private Integer liveNum;
+    private String liveRole;
 
     /**
      * 民族

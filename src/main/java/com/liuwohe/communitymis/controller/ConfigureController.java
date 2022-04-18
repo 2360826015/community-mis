@@ -1,6 +1,7 @@
 package com.liuwohe.communitymis.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liuwohe.communitymis.data.Result;
 import com.liuwohe.communitymis.entity.Role;
 import com.liuwohe.communitymis.entity.Unit;
@@ -21,26 +22,55 @@ public class ConfigureController {
     private UnitService unitService;
 
     /**
-     * @desc 获取角色码表
+     * @desc 获取住户角色码表
      * */
     @GetMapping("/getRole")
     public Result getRole(){
-        List<Role> list = roleService.list(null);
+        QueryWrapper<Role> qw = new QueryWrapper<>();
+        qw.eq("type","live_role");
+        List<Role> list = roleService.list(qw);
         return Result.success(list);
     }
 
     /**
-     * @desc 添加角色配置
+     * @desc 获取用户角色码表
+     * */
+    @GetMapping("/getRoleUser")
+    public Result getRoleUser(){
+        QueryWrapper<Role> qw = new QueryWrapper<>();
+        qw.eq("type","user");
+        List<Role> list = roleService.list(qw);
+        return Result.success(list);
+    }
+
+    /**
+     * @desc 添加住户角色配置
      * */
     @PostMapping("/addRole")
     public Result addRole(@RequestBody Role role){
       try{
+          role.setType("live_role");
           boolean b = roleService.save(role);
           return Result.success("添加角色配置成功！");
 
         }catch (Exception e){
           return Result.failed("添加错误！");
       }
+    }
+
+    /**
+     * @desc 添加用户角色配置
+     * */
+    @PostMapping("/addRoleUser")
+    public Result addRoleUser(@RequestBody Role role){
+        try{
+            role.setType("user");
+            boolean b = roleService.save(role);
+            return Result.success("添加角色配置成功！");
+
+        }catch (Exception e){
+            return Result.failed("添加错误！");
+        }
     }
 
     /**

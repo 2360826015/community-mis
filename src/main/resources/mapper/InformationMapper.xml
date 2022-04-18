@@ -12,7 +12,7 @@
             <result property="sex" column="sex" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
             <result property="idcard" column="idcard" jdbcType="VARCHAR"/>
-            <result property="liveNum" column="live_num" jdbcType="INTEGER"/>
+            <result property="liveRole" column="live_role" jdbcType="VARCHAR"/>
             <result property="nation" column="nation" jdbcType="VARCHAR"/>
             <result property="unitId" column="unit_id" jdbcType="VARCHAR"/>
             <result property="houseNum" column="house_num" jdbcType="VARCHAR"/>
@@ -22,7 +22,7 @@
     <sql id="Base_Column_List">
         house_id,user_id,homeowner,
         age,sex,phone,
-        idcard,live_num,nation,
+        idcard,live_role,nation,
         unit_id,house_num,save_date
     </sql>
 </mapper>

@@ -17,13 +17,18 @@ public class Role implements Serializable {
     /**
      * 角色编号
      */
-    @TableId
+    @TableId(type = IdType.UUID)
     private String roleId;
 
     /**
      * 角色名
      */
     private String name;
+
+    /**
+     * 角色类型
+     * */
+    private String type;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

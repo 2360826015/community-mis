@@ -54,6 +54,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public String insertUser(User params) {
         MD5Util md5Util = new MD5Util();
         if (StringUtils.isNotEmpty(params.getPassword())){
+            /*设置默认用户类型*/
+            params.setUserRoleId("2");
             /*设置主键id*/
             params.setUserId(params.getUsername()+params.getUserRoleId());
             /*加密密码*/
@@ -62,7 +64,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return "注册成功";
         }
         return "密码为空，注册失败！";
-
     }
 }
 

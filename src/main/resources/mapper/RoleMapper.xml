@@ -7,9 +7,10 @@
     <resultMap id="BaseResultMap" type="com.liuwohe.communitymis.entity.Role">
             <id property="roleId" column="role_id" jdbcType="VARCHAR"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        role_id,name
+        role_id,name,type
     </sql>
 </mapper>

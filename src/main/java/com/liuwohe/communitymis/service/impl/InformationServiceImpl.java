@@ -27,9 +27,15 @@ public class InformationServiceImpl extends ServiceImpl<InformationMapper, Infor
     @Override
     public List<Information> queryByParams(Map<String, Object> params) {
         QueryWrapper<Information> qw = new QueryWrapper<>();
+        /*判断用户角色*/
+        /*管理员用户能获取所有车辆信息*/
+        if("2".equals(params.get("userRoleId"))){
+            /*普通用户则只查询本用户下的车辆信息*/
+            qw.eq("user_id",params.get("userId"));
+        }
         qw.eq(StringUtils.isNotEmpty((String)params.get("houseId")),"house_id",params.get("houseId"))
         .like(StringUtils.isNotEmpty((String)params.get("homeowner")),"homeowner",params.get("homeowner"))
-        .eq(StringUtils.isNotEmpty((String)params.get("unitId")),"unit_id",params.get("houseId"))
+        .eq(StringUtils.isNotEmpty((String)params.get("unitId")),"unit_id",params.get("unitId"))
         .like(StringUtils.isNotEmpty((String)params.get("houseNum")),"house_num",params.get("houseNum"));
         return informationMapper.selectList(qw);
     }

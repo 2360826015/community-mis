@@ -9,10 +9,11 @@
             <result property="theme" column="theme" jdbcType="VARCHAR"/>
             <result property="feedbackDate" column="feedback_date" jdbcType="TIMESTAMP"/>
             <result property="text" column="text" jdbcType="VARCHAR"/>
+             <result property="status" column="status" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         feedback_id,theme,feedback_date,
-        text
+        text,status
     </sql>
 </mapper>
