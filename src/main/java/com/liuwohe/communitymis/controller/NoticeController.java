@@ -19,8 +19,9 @@ public class NoticeController {
 
     @PostMapping("/add")
     public Result addNotice(@RequestBody Notice notice){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         notice.setSendDate(format.format(new Date()));
+        notice.setStatus("7");
         boolean b = noticeService.save(notice);
         if(!b){
             return Result.failed("通知公告添加失败！");

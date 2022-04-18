@@ -18,7 +18,7 @@ public class Notice implements Serializable {
     /**
      * 通知编号
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.UUID)
     private String noticeId;
 
     /**
