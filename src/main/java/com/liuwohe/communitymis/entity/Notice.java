@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -41,6 +42,13 @@ public class Notice implements Serializable {
      * */
     private String status;
 
+    /* *
+    *过期时间
+    */
+    private  String overTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+
 }
