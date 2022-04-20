@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* @author Administrator
+* @author 23608
 * @description 针对表【resident_car_info】的数据库操作Service
-* @createDate 2022-04-18 20:55:25
+* @createDate 2022-04-18 15:29:37
 */
 public interface CarInfoService extends IService<CarInfo> {
 

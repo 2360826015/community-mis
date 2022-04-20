@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liuwohe.communitymis.entity.CarInfo;
-import com.liuwohe.communitymis.entity.Information;
 import com.liuwohe.communitymis.service.CarInfoService;
 import com.liuwohe.communitymis.mapper.CarInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* @author Administrator
+* @author 23608
 * @description 针对表【resident_car_info】的数据库操作Service实现
-* @createDate 2022-04-18 20:55:25
+* @createDate 2022-04-18 15:29:37
 */
 @Service
 public class CarInfoServiceImpl extends ServiceImpl<CarInfoMapper, CarInfo>
@@ -34,8 +33,8 @@ public class CarInfoServiceImpl extends ServiceImpl<CarInfoMapper, CarInfo>
             /*普通用户则只查询本用户下的车辆信息*/
             qw.eq("user_id",params.get("userId"));
         }
-        qw.like(StringUtils.isNotEmpty((String)params.get("carowner")),"carowner",params.get("carowner"))
-                .like(StringUtils.isNotEmpty((String)params.get("numPlate")),"num_plate",params.get("numPlate"));
+         qw.like(StringUtils.isNotEmpty((String)params.get("numPlate")),"num_plate",params.get("numPlate"))
+         .like(StringUtils.isNotEmpty((String)params.get("carowner")),"carowner",params.get("carowner"));
         return carInfoMapper.selectList(qw);
     }
 }
