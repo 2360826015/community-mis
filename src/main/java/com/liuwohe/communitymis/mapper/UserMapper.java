@@ -1,5 +1,7 @@
 package com.liuwohe.communitymis.mapper;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.liuwohe.communitymis.entity.User;
@@ -12,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.liuwohe.communitymis.entity.User
 */
 public interface UserMapper extends BaseMapper<User> {
+
+    List<Map<String,Object>> selectList();
 
     User selectByUsername(@Param("username") String username);
 }

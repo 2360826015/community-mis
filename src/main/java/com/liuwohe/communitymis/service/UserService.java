@@ -12,7 +12,7 @@ import java.util.Map;
 * @createDate 2022-04-09 16:59:45
 */
 public interface UserService extends IService<User> {
-    List<User> getList();
+    List<Map<String,Object>> getList();
 
     User queryByUsername(Map<String, Object> params);
 

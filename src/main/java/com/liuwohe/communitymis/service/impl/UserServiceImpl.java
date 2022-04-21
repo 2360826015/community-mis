@@ -28,8 +28,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private UserMapper userMapper;
 
     @Override
-    public List<User> getList() {
-        return userMapper.selectList(null);
+    public List<Map<String,Object>> getList() {
+        return userMapper.selectList();
     }
 
     @Override
