@@ -19,7 +19,7 @@ public class Assets implements Serializable {
      * ID
      */
     @TableId(type = IdType.UUID)
-    private String assetsid;
+    private String assetsId;
 
     /**
      * 资产名称
@@ -66,7 +66,7 @@ public class Assets implements Serializable {
             return false;
         }
         Assets other = (Assets) that;
-        return (this.getAssetsid() == null ? other.getAssetsid() == null : this.getAssetsid().equals(other.getAssetsid()))
+        return (this.getAssetsId() == null ? other.getAssetsId() == null : this.getAssetsId().equals(other.getAssetsId()))
             && (this.getAssetsName() == null ? other.getAssetsName() == null : this.getAssetsName().equals(other.getAssetsName()))
             && (this.getBrand() == null ? other.getBrand() == null : this.getBrand().equals(other.getBrand()))
             && (this.getValue() == null ? other.getValue() == null : this.getValue().equals(other.getValue()))
@@ -79,7 +79,7 @@ public class Assets implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getAssetsid() == null) ? 0 : getAssetsid().hashCode());
+        result = prime * result + ((getAssetsId() == null) ? 0 : getAssetsId().hashCode());
         result = prime * result + ((getAssetsName() == null) ? 0 : getAssetsName().hashCode());
         result = prime * result + ((getBrand() == null) ? 0 : getBrand().hashCode());
         result = prime * result + ((getValue() == null) ? 0 : getValue().hashCode());
@@ -95,7 +95,7 @@ public class Assets implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", assetsid=").append(assetsid);
+        sb.append(", assetsId=").append(assetsId);
         sb.append(", assetsName=").append(assetsName);
         sb.append(", brand=").append(brand);
         sb.append(", value=").append(value);

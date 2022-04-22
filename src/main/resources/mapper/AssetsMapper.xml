@@ -5,7 +5,7 @@
 <mapper namespace="com.liuwohe.communitymis.mapper.AssetsMapper">
 
     <resultMap id="BaseResultMap" type="com.liuwohe.communitymis.entity.Assets">
-            <id property="assetsid" column="assetsId" jdbcType="VARCHAR"/>
+            <id property="assetsId" column="assets_id" jdbcType="VARCHAR"/>
             <result property="assetsName" column="assets_name" jdbcType="VARCHAR"/>
             <result property="brand" column="brand" jdbcType="VARCHAR"/>
             <result property="value" column="value" jdbcType="DOUBLE"/>
@@ -15,7 +15,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        assetsId,assets_name,brand,
+        assets_id,assets_name,brand,
         value,num,int_time,
         assets_num
     </sql>

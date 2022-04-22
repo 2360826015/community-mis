@@ -1,11 +1,7 @@
 package com.liuwohe.communitymis.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.liuwohe.communitymis.data.Result;
 import com.liuwohe.communitymis.entity.Assets;
-import com.liuwohe.communitymis.entity.CarInfo;
 import com.liuwohe.communitymis.service.AssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -15,7 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserMapper extends BaseMapper<User> {
 
-    List<Map<String,Object>> selectList();
+    List<Map<String,Object>> selectUserList();
 
     User selectByUsername(@Param("username") String username);
 }

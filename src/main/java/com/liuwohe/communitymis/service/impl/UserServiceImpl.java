@@ -29,7 +29,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public List<Map<String,Object>> getList() {
-        return userMapper.selectList();
+        return userMapper.selectUserList();
     }
 
     @Override
