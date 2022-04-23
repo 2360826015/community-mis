@@ -1,6 +1,7 @@
 package com.liuwohe.communitymis.controller;
 
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.liuwohe.communitymis.Constant.Constant;
 import com.liuwohe.communitymis.data.Result;
@@ -27,6 +28,9 @@ public class LoginRegisterController {
     public Result userLogin(@RequestBody Map<String,Object> params){
         try{
             User user=userService.queryByUsername(params);
+            if(StringUtils.isEmpty(user.getUserId())){
+                return Result.failed("用户名或密码错误，请检查！");
+            }
             return Result.success(user);
         }catch (Exception e){
             return Result.failed("登录失败,请检查用户名是否正确");

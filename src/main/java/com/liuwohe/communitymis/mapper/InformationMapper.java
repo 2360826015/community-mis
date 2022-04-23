@@ -14,6 +14,7 @@ import java.util.Map;
 */
 public interface InformationMapper extends BaseMapper<Information> {
 
+   List<Map<String,Object>> statistics();
 }
 
 

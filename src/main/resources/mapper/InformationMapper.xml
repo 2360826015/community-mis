@@ -25,4 +25,10 @@
         idcard,live_role,nation,
         unit_id,house_num,save_date
     </sql>
+    <select id="statistics" resultType="java.util.LinkedHashMap">
+        select ru.unit_name,count(ri.unit_id) total
+        from resident_information ri left join resident_unit ru
+            on ri.unit_id = ru.unit_id
+        group by ri.unit_id
+    </select>
 </mapper>

@@ -24,7 +24,7 @@
     </select>
 
     <select id="selectUserList" resultType="java.util.LinkedHashMap">
-        select u.user_id "userId",u.username,r.name
+        select u.user_id "userId",u.username,u.password,r.name
         from resident_role r right join resident_user u
         on r.role_id=u.user_role_id
     </select>
