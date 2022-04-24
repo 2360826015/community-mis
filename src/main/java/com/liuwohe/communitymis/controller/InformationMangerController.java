@@ -63,10 +63,10 @@ public class InformationMangerController {
         if(!b){
             return Result.failed("住户信息添加失败！");
         }
-        return Result.success("添加住户信息成功！");
+            return Result.success("添加住户信息成功！");
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return Result.failed("添加失败！");
+            return Result.failed("添加失败！"+e.getMessage());
         }
 
     }

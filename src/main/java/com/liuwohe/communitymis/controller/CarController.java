@@ -61,7 +61,7 @@ public class CarController {
             return Result.success("车辆信息添加成功！");
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return Result.failed("添加失败！");
+            return Result.failed("添加失败！"+e.getMessage());
         }
 
     }
@@ -89,9 +89,9 @@ public class CarController {
     public Result modifyInformation(@RequestParam("carInfoId") String carInfoId){
         boolean b = carInfoService.removeById(carInfoId);
         if(!b){
-            return Result.failed("住户信息删除失败！");
+            return Result.failed("车辆信息删除失败！");
         }
-        return Result.success("删除住户信息成功！");
+        return Result.success("删除车辆信息成功！");
     }
 
     /**
