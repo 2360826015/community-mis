@@ -6,7 +6,9 @@ import com.github.pagehelper.PageInfo;
 import com.liuwohe.communitymis.data.Result;
 import com.liuwohe.communitymis.entity.CarInfo;
 import com.liuwohe.communitymis.entity.Information;
+import com.liuwohe.communitymis.entity.User;
 import com.liuwohe.communitymis.service.CarInfoService;
+import com.liuwohe.communitymis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,24 +24,27 @@ public class CarController {
 
     @Autowired
     private CarInfoService carInfoService;
+    @Autowired
+    private UserService userService;
 
     /**
      * @desc 获取车辆信息列表
      * @return 查询出的车辆信息列表
      * */
     @GetMapping("/list")
-    public Result getCarInfo(@RequestParam("userId") String userId, @RequestParam("userRoleId")String userRoleId, @RequestParam("pageNum") Integer num, @RequestParam("pageSize") Integer size){
+    public Result getCarInfo(@RequestParam("userId") String userId,@RequestParam("pageNum") Integer num, @RequestParam("pageSize") Integer size){
         QueryWrapper<CarInfo> qw = new QueryWrapper<>();
+        User user = userService.getById(userId);
+        /*判断用户角色*/
+        /*管理员用户能获取所有车辆信息*/
+        if("2".equals(user.getUserRoleId())){
+            /*普通用户则只查询本用户下的车辆信息*/
+            qw.eq("user_id",userId);
+        }
         //默认分页判断
         int pageNum = num  == null ? 1 : num;
         int pageSize = size  == null ? 10 : size;
         PageHelper.startPage(pageNum, pageSize);
-        /*判断用户角色*/
-        /*管理员用户能获取所有车辆信息*/
-        if("2".equals(userRoleId)){
-            /*普通用户则只查询本用户下的车辆信息*/
-            qw.eq("user_id",userId);
-        }
         List<CarInfo> list = carInfoService.list(qw);
         PageInfo<CarInfo> pageInfo = new PageInfo<>(list);
         return Result.success(pageInfo);

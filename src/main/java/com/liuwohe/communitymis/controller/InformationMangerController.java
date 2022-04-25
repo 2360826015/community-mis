@@ -6,7 +6,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liuwohe.communitymis.data.Result;
 import com.liuwohe.communitymis.entity.Information;
+import com.liuwohe.communitymis.entity.User;
 import com.liuwohe.communitymis.service.InformationService;
+import com.liuwohe.communitymis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,8 @@ public class InformationMangerController {
 
     @Autowired
     private InformationService informationService;
+    @Autowired
+    private UserService userService;
 
 
     /**
@@ -30,18 +34,19 @@ public class InformationMangerController {
      * @return 查询出的业主信息列表
      * */
     @GetMapping("/list")
-    public Result getInformationList(@RequestParam("userId") String userId,@RequestParam("userRoleId")String userRoleId,@RequestParam("pageNum") Integer num,@RequestParam("pageSize") Integer size){
+    public Result getInformationList(@RequestParam("userId") String userId,@RequestParam("pageNum") Integer num,@RequestParam("pageSize") Integer size){
         QueryWrapper<Information> qw = new QueryWrapper<>();
+        User user = userService.getById(userId);
+        /*根据用户名查询用户信息并判断用户角色*/
+        /*管理员用户能获取所有住户信息*/
+        if("2".equals(user.getUserRoleId())){
+            /*普通用户则只查询本用户下的住户信息*/
+            qw.eq("user_id",userId);
+        }
         //默认分页判断
         int pageNum = num  == null ? 1 : num;
         int pageSize = size  == null ? 10 : size;
         PageHelper.startPage(pageNum, pageSize);
-        /*判断用户角色*/
-        /*管理员用户能获取所有住户信息*/
-        if("2".equals(userRoleId)){
-            /*普通用户则只查询本用户下的住户信息*/
-            qw.eq("user_id",userId);
-        }
         List<Information> list = informationService.list(qw);
         PageInfo<Information> pageInfo = new PageInfo<>(list);
         return Result.success(pageInfo);

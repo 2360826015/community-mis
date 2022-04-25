@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liuwohe.communitymis.entity.CarInfo;
+import com.liuwohe.communitymis.entity.User;
+import com.liuwohe.communitymis.mapper.UserMapper;
 import com.liuwohe.communitymis.service.CarInfoService;
 import com.liuwohe.communitymis.mapper.CarInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +26,16 @@ public class CarInfoServiceImpl extends ServiceImpl<CarInfoMapper, CarInfo>
 
     @Autowired
     private CarInfoMapper carInfoMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public List<CarInfo> queryByParams(Map<String, Object> params) {
         QueryWrapper<CarInfo> qw = new QueryWrapper<>();
         /*判断用户角色*/
         /*管理员用户能获取所有车辆信息*/
-        if("2".equals(params.get("userRoleId"))){
+        User user = userMapper.selectById((String)params.get("userId"));
+        if("2".equals(user.getUserRoleId())){
             /*普通用户则只查询本用户下的车辆信息*/
             qw.eq("user_id",params.get("userId"));
         }
